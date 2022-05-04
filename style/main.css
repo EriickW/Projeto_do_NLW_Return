@@ -5,41 +5,70 @@
 }
  
 :root{
-  
+  --brand-beige: #fffaf0;
   --corPrimaria:#00856F;
   --headline: #22262a;
-  --paragraph: hsl(210,9%,31%);
+  --paragraph: #484f56;
+  --brand-light:hsl(148,23%,89%);
+  --nav-height:7.2rem;
   font-size: 62.5%;/*trasforma todas as fontes com tamanho de 10px em padrão*/
 }
 /*design mobile first*/
 body{
   font-family: 'DM Sans';
   text-align: center;
+  overflow: overlay;
 }
-header{
-  
+
+
+
+
+.wrapper{
   width: 37.5rem;
-  margin: 0 auto;
-  margin-top:4.1rem ;
+  margin-inline:auto;
+  padding-inline: 2.4rem;
 }
-h4{
+/*===========================Header==================================*/
+header{
+
+  margin-top:calc(4.1rem + var(--nav-height));
+}
+header img{
+  width: 26.4rem;
+  display: block;
+  margin-inline:auto;
+  object-position: 0 2rem;
+}
+header::before{
+  content:"";
+  width:100vw ;
+  height: calc(108rem + var(--nav-height));
+  background: var(--brand-light);
+  display: block;
+  position: absolute;
+  top:0;
+  left:0;
+z-index: -1;
+}
+
+header h4{
 font-size: 1.4rem;
-color: var(--verde);
+color: var(--corPrimaria);
 margin-bottom: 1.6rem;
 }
-h1{
+header h1{
   font-size: 3.4rem;
   color:var(--headline);
   line-height: 130%;
   margin-bottom: 2.4rem;
 }
-p{
+header p{
   font-size: 1.8rem;
   line-height: 150%;
   color: var(--paragraph);
   margin-bottom: 3.2rem;
 }
-button{
+header button{
   color:white;
   background-color: var(--corPrimaria);
   margin-bottom: 6rem;
@@ -56,4 +85,149 @@ button{
   gap:1.6rem;/*espaçamento entre os itens dentro*/
   margin-left: auto;
   margin-right: auto;
+}
+header .stats{
+  width: 32.7rem;
+  padding-block: 4rem;
+  margin-inline: auto;
+  background-color: var(--brand-beige);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+ border: 1px solid var(--brand-light);
+ border-radius: 0.6rem;
+}
+.stat h3{
+  font-weight: 700;
+  font-size: 4.8rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+header .stat p{
+  margin: 0;
+  color: var(--corPrimaria);
+  line-height: 150%;
+}
+
+
+/*===========================NAV==================================*/
+
+nav{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  position: fixed;
+  top:0;
+  left:50%;
+  transform: translateX(-50%);
+transition: all 0.2s ease-in-out;
+}
+nav .wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav.scroll{
+  background: var(--corPrimaria);
+width: 100vw;
+}
+nav.scroll svg:nth-child(1) path{
+  fill: white;
+}
+nav.scroll button path{
+  stroke: white;
+}
+/*===========================menu-expanded==================================*/
+body.menu-expanded{
+  overflow: hidden;
+}
+body.menu-expanded > :not(nav){
+  display: none;
+}
+.menu, .close-menu,body.menu-expanded .open-menu{
+overflow: 0;
+visibility: hidden;
+}
+body.menu-expanded .menu,body.menu-expanded .close-menu{
+  opacity: 1;
+  visibility: visible;
+}
+body.menu-expanded .menu{
+  position:fixed;
+  top:0;
+  left: 0;
+  background-color: var(--corPrimaria);
+  width: 100vw;
+  height: 100vh;
+  padding-top: var(--nav-height);
+}
+body.menu-expanded nav{
+  position: relative;
+  
+}
+.menu ul:nth-child(1){
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+  margin-top: 6rem;
+  
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+ 
+}
+.menu ul li a{
+  text-decoration: none;
+  color: white;
+}
+.social{ 
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+.social i{
+  color: white;
+  font-size: 2rem;
+  
+}
+.button{
+  background: white;
+  color: var(--corPrimaria);
+  font-weight: 700;
+  border: none;
+  border-radius: 4rem;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  padding: 1.6rem 3.2rem;
+  font-family: 'DM Sans';
+  text-decoration: none;
+  margin-top:4.8rem ;
+  margin-bottom:8rem ;
+
+}
+body.menu-expanded .logo,
+body.menu-expanded  button{
+  position: relative;
+  z-index: 10;
+}
+body.menu-expanded .logo path{
+  fill: white;
+}
+body.menu-expanded button  path{
+  stroke: white;
+}
+nav button{
+  background: none;
+  border: none;
+  color:white;
+  font-size: 3rem;
+  cursor: pointer;
 }
